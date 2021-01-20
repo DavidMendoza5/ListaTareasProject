@@ -17,11 +17,12 @@
 
 <script>
 export default {
-    props: ['tareas'],
+    props: ['tareas', 'decrementarContador'],
     methods: {
         eliminarTarea(tarea) {
             let indice = this.tareas.indexOf(tarea)
             this.tareas.splice(indice,1)
+            this.decrementarContador()
         }
     }
 }
