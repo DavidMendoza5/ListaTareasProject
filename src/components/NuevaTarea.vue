@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { bus } from '../main.js'
+
 export default {
     data() {
         return {
@@ -25,10 +27,15 @@ export default {
                 this.tareas.push(tarea)
                 // El $emit nos permite emitir un evento, recibe 2 parámetros, el primero es el nombre que le queremos dar al evento, luego son argumentos
                 // que queramos pasar
-                this.$emit('incrementarContador', 1)
+                // this.$emit('incrementarContador', 1)
+                bus.$emit('actualizarContador', this.tareas.length)
             }
             this.nuevaTarea = ''
         }
+    },
+    // Esto sirve para que cuando cargue la página tengamos el número de tareas, debido a que el componente titulo no tiene acceso al arreglo tareas
+    created() {
+        bus.$emit('actualizarContador', this.tareas.length)
     }
 }
 </script>
