@@ -23,6 +23,9 @@ export default {
                     terminada: false
                 }
                 this.tareas.push(tarea)
+                // El $emit nos permite emitir un evento, recibe 2 parámetros, el primero es el nombre que le queremos dar al evento, luego son argumentos
+                // que queramos pasar
+                this.$emit('incrementarContador', 1)
             }
             this.nuevaTarea = ''
         }
