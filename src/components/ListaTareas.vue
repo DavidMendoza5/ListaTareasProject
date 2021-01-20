@@ -16,13 +16,16 @@
 </template>
 
 <script>
+import { bus } from '../main.js'
+
 export default {
     props: ['tareas', 'decrementarContador'],
     methods: {
         eliminarTarea(tarea) {
             let indice = this.tareas.indexOf(tarea)
             this.tareas.splice(indice,1)
-            this.decrementarContador()
+            // this.decrementarContador()
+            bus.$emit('actualizarContador', this.tareas.length)
         }
     }
 }
