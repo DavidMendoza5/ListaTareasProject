@@ -1,5 +1,8 @@
 <template>
-    <h2>{{ titulo }}</h2>
+    <div>
+        <h2>{{ titulo }}</h2>
+        Tareas: {{ numTareas }}
+    </div>
 </template>
 
 <script>
@@ -11,6 +14,9 @@ export default {
         titulo: {
             type: String,
             default: 'Tareas'
+        },
+        numTareas: {
+            
         }
     }
 }
