@@ -51,6 +51,17 @@ export default {
     decrementarContador() {
       return this.numTareas--
     }
+  },
+  created() {
+    // El get sólo recibe la url como parámetro y devuelve una promesa
+    this.$http.get('https://ejemplovue-485c4-default-rtdb.firebaseio.com/tareas.json').then(respuesta => {
+      return respuesta.json()
+    }).then(respuestaJson => {
+      console.log(respuestaJson)
+      for(let id in respuestaJson) {
+        this.tareas.push(respuestaJson[id])
+      }
+    })
   }
 }
 </script>
