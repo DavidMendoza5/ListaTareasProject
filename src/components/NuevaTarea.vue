@@ -30,6 +30,14 @@ export default {
                 // this.$emit('incrementarContador', 1)
                 bus.$emit('actualizarContador', this.tareas.length)
             }
+            // Usamos la librería de vue-resource
+            // En este caso es un post, recibe como primer parámetro la URL, pero se le debe agregar un nombre que sea de tipo json al final de la URL,
+            // el segundo parámetro es la información que se quiere enviar
+            // Este llamado regresa una promesa
+            this.$http.post('https://ejemplovue-485c4-default-rtdb.firebaseio.com/tareas.json', {
+                texto: this.nuevaTarea.trim(),
+                terminada: false
+            }).then(respuesta => console.log(respuesta))
             this.nuevaTarea = ''
         }
     },
