@@ -31,20 +31,7 @@ export default {
     return {
       titulo_prop: 'Lista de tareas',
       numTareas: 3,
-      tareas: [
-        {
-          texto: 'Aprender VueJs',
-          terminada: false
-        },
-        {
-          texto: 'Aprender NodeJs',
-          terminada: false
-        },
-        {
-          texto: 'Aprender ReactJs',
-          terminada: false
-        }
-      ]
+      tareas: []
     }
   },
   methods: {
@@ -54,12 +41,17 @@ export default {
   },
   created() {
     // El get sólo recibe la url como parámetro y devuelve una promesa
-    this.$http.get('https://ejemplovue-485c4-default-rtdb.firebaseio.com/tareas.json').then(respuesta => {
+    this.$http.get('tareas.json').then(respuesta => {
       return respuesta.json()
     }).then(respuestaJson => {
       console.log(respuestaJson)
       for(let id in respuestaJson) {
-        this.tareas.push(respuestaJson[id])
+        let tarea = {
+          id: id,
+          texto: respuestaJson[id].texto,
+          terminada: respuestaJson[id].terminada
+        }
+        this.tareas.push(tarea)
       }
     })
   }
